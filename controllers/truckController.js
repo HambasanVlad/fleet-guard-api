@@ -67,12 +67,19 @@ const createTruck = async (req, res) => {
             return res.status(400).json({ errors: validationErrors });
         }
 
-        // Salvăm direct în baza de date SQL!
+        // Salvăm TOT pachetul în baza de date SQL!
         const newTruck = await Truck.create({
             licensePlate: req.body.licensePlate,
             brand: req.body.brand,
             model: req.body.model || 'Standard',
-            // companyId: 1 // Am lăsat comentat pentru moment până setăm compania
+            year: req.body.year,
+            purchaseDate: req.body.purchaseDate,
+            rcaStartDate: req.body.rcaStartDate,
+            rcaExpiry: req.body.rcaExpiry,
+            itpStartDate: req.body.itpStartDate,
+            itpExpiry: req.body.itpExpiry,
+            rovinietaStartDate: req.body.rovinietaStartDate,
+            rovinietaExpiry: req.body.rovinietaExpiry
         });
 
         res.status(201).json(newTruck);
